@@ -8,6 +8,7 @@ import urllib3
 from getpass import _raw_input
 from requests import get
 from re import search
+from time import sleep
  
 def chat_client():
     
@@ -77,6 +78,7 @@ def chat_client():
         for sock in ready_to_read:             
             if sock == s:
                 data = sock.recv(4096).decode()
+                sleep(0.5)
                 
                 if not data :
                     print('\nDesconectado desde el server')
@@ -93,7 +95,8 @@ def chat_client():
                     s.close()
                     sys.exit(0)
                 else:
-                    mensaje = "({})[{}]>: ".format("90.130.89.173", nick) + str(msg)
+                    mensaje = "({})[{}]>: ".format(GET_IP(), nick) + str(msg)
+                    sleep(0.5)
                     s.send(mensaje.encode())
                  
 
